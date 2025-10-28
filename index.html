@@ -26,6 +26,16 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
+        /* Added for better mobile responsiveness */
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .grid-cols-1-to-md-3 > div {
+                grid-column: span 1 / span 1;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-full">
@@ -37,12 +47,10 @@
     </header>
 
     <main class="container mx-auto px-6 py-12">
-        <!-- Form Section -->
         <div class="bg-white rounded-2xl card-shadow p-8 mb-12">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Business Information Form</h2>
             
             <form id="msmeForm" class="space-y-6">
-                <!-- MSME Classification -->
                 <div class="form-group">
                     <label for="msmeClassification" class="block text-lg font-semibold text-gray-700 mb-3">
                         MSME Classification
@@ -56,7 +64,6 @@
                     </select>
                 </div>
 
-                <!-- Major Activity -->
                 <div class="form-group">
                     <label for="majorActivity" class="block text-lg font-semibold text-gray-700 mb-3">
                         Major Activity of Unit
@@ -70,7 +77,6 @@
                     </select>
                 </div>
 
-                <!-- Type of Organization -->
                 <div class="form-group">
                     <label for="organizationType" class="block text-lg font-semibold text-gray-700 mb-3">
                         Type of Organization
@@ -89,7 +95,6 @@
                     </select>
                 </div>
 
-                <!-- Location - State -->
                 <div class="form-group">
                     <label for="state" class="block text-lg font-semibold text-gray-700 mb-3">
                         State
@@ -128,7 +133,6 @@
                     </select>
                 </div>
 
-                <!-- Location - District -->
                 <div class="form-group">
                     <label for="district" class="block text-lg font-semibold text-gray-700 mb-3">
                         District
@@ -137,7 +141,6 @@
                            class="form-input w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-lg">
                 </div>
 
-                <!-- Submit Button -->
                 <div class="text-center pt-6">
                     <button type="submit" 
                             class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-4 rounded-lg text-xl font-semibold hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
@@ -147,33 +150,29 @@
             </form>
         </div>
 
-        <!-- Results Section -->
         <div id="resultsSection" class="hidden">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Your Business Profile & Matching Schemes</h2>
             
-            <!-- Business Profile Summary -->
             <div class="bg-white rounded-2xl card-shadow p-8 mb-8">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6">Business Profile Summary</h3>
                 <div id="profileSummary" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Profile details will be populated here -->
-                </div>
+                    </div>
             </div>
 
-            <!-- Scheme Filters -->
             <div class="bg-white rounded-2xl card-shadow p-8 mb-8">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6">Filter Schemes</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="filter-card bg-blue-50 p-6 rounded-xl border-2 border-blue-200 cursor-pointer" onclick="filterSchemes('financial')">
+                    <div class="filter-card bg-blue-50 p-6 rounded-xl border-2 border-blue-200 cursor-pointer text-center" onclick="filterSchemes('financial')">
                         <div class="text-blue-600 text-3xl mb-3">💰</div>
                         <h4 class="text-lg font-semibold text-blue-800">Financial Support</h4>
                         <p class="text-blue-600">Loans, subsidies, grants</p>
                     </div>
-                    <div class="filter-card bg-green-50 p-6 rounded-xl border-2 border-green-200 cursor-pointer" onclick="filterSchemes('technical')">
+                    <div class="filter-card bg-green-50 p-6 rounded-xl border-2 border-green-200 cursor-pointer text-center" onclick="filterSchemes('technical')">
                         <div class="text-green-600 text-3xl mb-3">🔧</div>
                         <h4 class="text-lg font-semibold text-green-800">Technical Support</h4>
                         <p class="text-green-600">Training, consultancy, R&D</p>
                     </div>
-                    <div class="filter-card bg-purple-50 p-6 rounded-xl border-2 border-purple-200 cursor-pointer" onclick="filterSchemes('marketing')">
+                    <div class="filter-card bg-purple-50 p-6 rounded-xl border-2 border-purple-200 cursor-pointer text-center" onclick="filterSchemes('marketing')">
                         <div class="text-purple-600 text-3xl mb-3">📈</div>
                         <h4 class="text-lg font-semibold text-purple-800">Marketing Support</h4>
                         <p class="text-purple-600">Export promotion, branding</p>
@@ -181,10 +180,8 @@
                 </div>
             </div>
 
-            <!-- Schemes List -->
             <div id="schemesList" class="space-y-6">
-                <!-- Schemes will be populated here -->
-            </div>
+                </div>
         </div>
     </main>
 
@@ -195,15 +192,16 @@
     </footer>
 
     <script>
-        // Sample scheme data
+        // --- EXPANDED SAMPLE SCHEME DATA ---
         const schemes = [
+            // Existing Schemes
             {
                 name: "Prime Minister's Employment Generation Programme (PMEGP)",
                 category: "financial",
                 description: "Credit linked subsidy programme for generating employment opportunities through establishment of micro enterprises.",
                 eligibility: ["micro", "small"],
                 activities: ["manufacturing", "services", "trading"],
-                organizations: ["proprietary", "partnership", "company", "cooperative"],
+                organizations: ["proprietary", "partnership", "company", "cooperative", "society", "trust"],
                 subsidy: "15-35% of project cost",
                 maxLoan: "₹25 lakhs (Manufacturing), ₹10 lakhs (Services)"
             },
@@ -238,7 +236,7 @@
                 activities_covered: "Trade fairs, buyer-seller meets, market studies"
             },
             {
-                name: "Skill Development Programme",
+                name: "Skill Development Programme (SDP)",
                 category: "technical",
                 description: "Training programmes for enhancing skills of entrepreneurs and workers.",
                 eligibility: ["micro", "small", "medium"],
@@ -246,6 +244,65 @@
                 organizations: ["proprietary", "partnership", "company", "llp", "cooperative", "society", "trust"],
                 coverage: "100% funding for training",
                 duration: "1-6 months programmes"
+            },
+            
+            // --- NEWLY ADDED SCHEMES (From "Excel File" Concept) ---
+
+            // 1. Credit Linked Capital Subsidy Scheme (CLCSS) - Manufacturing/Technology Focus
+            {
+                name: "Credit Linked Capital Subsidy Scheme (CLCSS)",
+                category: "financial",
+                description: "Provides a 15% upfront capital subsidy (maximum ₹15 lakh) to MSMEs for technology upgrade.",
+                eligibility: ["micro", "small"],
+                activities: ["manufacturing"],
+                organizations: ["proprietary", "partnership", "company", "llp"],
+                subsidy: "15% of investment in plant and machinery",
+                maxSubsidy: "₹15 Lakh",
+                focus: "Technology Upgradation"
+            },
+            // 2. Public Procurement Policy - Marketing/Reservation Focus
+            {
+                name: "Public Procurement Policy for Micro & Small Enterprises",
+                category: "marketing",
+                description: "Mandates 25% annual procurement by Central Ministries/Departments/PSUs from MSEs, with a 4% sub-target for SC/ST-owned MSEs and 3% for Women-owned MSEs.",
+                eligibility: ["micro", "small"],
+                activities: ["manufacturing", "services"],
+                organizations: ["proprietary", "partnership", "huf", "company", "llp", "cooperative", "society", "trust"],
+                reservation: "25% Government Procurement",
+                subTarget: "4% for SC/ST, 3% for Women Entrepreneurs"
+            },
+            // 3. Procurement and Marketing Support Scheme (PMS) - Marketing/Exhibition Focus
+            {
+                name: "Procurement and Marketing Support Scheme (PMS)",
+                category: "marketing",
+                description: "Aims to enhance the marketability of MSME products/services in the domestic and international markets.",
+                eligibility: ["micro", "small", "medium"],
+                activities: ["manufacturing", "services"],
+                organizations: ["proprietary", "partnership", "company", "llp"],
+                coverage: "Reimbursement for participation in trade fairs/exhibitions",
+                maxAssistance: "Varies by location and event"
+            },
+            // 4. Zero Defect Zero Effect (ZED) - Technical/Quality Focus
+            {
+                name: "Zero Defect Zero Effect (ZED) Scheme",
+                category: "technical",
+                description: "Promotes the adoption of Quality Management Tools and Energy Efficient manufacturing for products with zero defects and zero environmental impact.",
+                eligibility: ["micro", "small", "medium"],
+                activities: ["manufacturing"],
+                organizations: ["proprietary", "partnership", "company", "llp"],
+                subsidy: "80% (Micro), 60% (Small), 50% (Medium) of certification cost",
+                focus: "Quality, Energy Efficiency, Environmental Impact"
+            },
+            // 5. Raw Material Assistance Scheme - Financial/Operational Focus
+            {
+                name: "Raw Material Assistance Scheme",
+                category: "financial",
+                description: "Provides financial assistance for the purchase of raw materials (indigenous & imported) to Micro & Small Enterprises.",
+                eligibility: ["micro", "small"],
+                activities: ["manufacturing"],
+                organizations: ["proprietary", "partnership", "company", "llp"],
+                benefit: "Financing raw material purchases up to 90 days",
+                coverage: "Indigenous and Imported Raw Materials"
             }
         ];
 
@@ -259,7 +316,7 @@
             
             // Validate form
             if (!data.msmeClassification || !data.majorActivity || !data.organizationType || !data.state) {
-                showNotification('Please fill in all required fields', 'error');
+                showNotification('Please fill in all required fields (Classification, Activity, Organization Type, State)', 'error');
                 return;
             }
             
@@ -274,9 +331,15 @@
             // Display profile summary
             displayProfileSummary(data);
             
-            // Filter and display matching schemes
+            // Filter and display matching schemes (Default filter is 'all')
+            currentFilter = 'all';
             const matchingSchemes = filterMatchingSchemes(data);
             displaySchemes(matchingSchemes);
+
+             // Reset filter card styles
+             document.querySelectorAll('.filter-card').forEach(card => {
+                card.classList.remove('ring-4', 'ring-offset-2', 'ring-blue-500');
+            });
         }
 
         function displayProfileSummary(data) {
@@ -285,9 +348,9 @@
             const summaryItems = [
                 { label: 'MSME Classification', value: capitalizeFirst(data.msmeClassification), icon: '🏢' },
                 { label: 'Major Activity', value: capitalizeFirst(data.majorActivity), icon: '⚙️' },
-                { label: 'Organization Type', value: data.organizationType.toUpperCase(), icon: '📋' },
+                { label: 'Organization Type', value: getOrgDisplayName(data.organizationType), icon: '📋' },
                 { label: 'State', value: capitalizeFirst(data.state.replace('-', ' ')), icon: '📍' },
-                { label: 'District', value: capitalizeFirst(data.district), icon: '🗺️' }
+                { label: 'District', value: data.district ? capitalizeFirst(data.district) : 'N/A', icon: '🗺️' }
             ];
             
             profileSummary.innerHTML = summaryItems.map(item => `
@@ -300,13 +363,21 @@
         }
 
         function filterMatchingSchemes(data) {
-            return schemes.filter(scheme => {
+            // This function applies the business criteria (Classification, Activity, Organization)
+            let filtered = schemes.filter(scheme => {
                 const matchesClassification = scheme.eligibility.includes(data.msmeClassification);
                 const matchesActivity = scheme.activities.includes(data.majorActivity);
                 const matchesOrganization = scheme.organizations.includes(data.organizationType);
                 
                 return matchesClassification && matchesActivity && matchesOrganization;
             });
+
+            // Apply the category filter if it's not 'all'
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(scheme => scheme.category === currentFilter);
+            }
+
+            return filtered;
         }
 
         function displaySchemes(schemesToShow) {
@@ -325,18 +396,18 @@
             
             schemesList.innerHTML = `
                 <h3 class="text-2xl font-bold text-gray-800 mb-6">
-                    ${schemesToShow.length} Matching Scheme${schemesToShow.length > 1 ? 's' : ''} Found
+                    ${schemesToShow.length} Matching Scheme${schemesToShow.length !== 1 ? 's' : ''} Found
                 </h3>
                 ${schemesToShow.map(scheme => `
                     <div class="bg-white rounded-2xl card-shadow p-8 border-l-4 ${getCategoryColor(scheme.category)}">
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-gray-800">${scheme.name}</h4>
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+                            <h4 class="text-xl font-bold text-gray-800 mb-2 sm:mb-0">${scheme.name}</h4>
                             <span class="px-3 py-1 rounded-full text-sm font-medium ${getCategoryBadge(scheme.category)}">
                                 ${capitalizeFirst(scheme.category)}
                             </span>
                         </div>
                         <p class="text-gray-600 mb-6">${scheme.description}</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
                             ${getSchemeDetails(scheme)}
                         </div>
                         <div class="mt-6 pt-6 border-t border-gray-200">
@@ -349,16 +420,18 @@
             `;
         }
 
-        function filterSchemes(category) {
+        function filterSchemes(category, event) {
             currentFilter = category;
             
             // Update filter card styles
             document.querySelectorAll('.filter-card').forEach(card => {
-                card.classList.remove('ring-2', 'ring-blue-500');
+                card.classList.remove('ring-4', 'ring-offset-2', 'ring-blue-500');
             });
             
-            if (category !== 'all') {
-                event.target.closest('.filter-card').classList.add('ring-2', 'ring-blue-500');
+            // Add style to the clicked card
+            const card = event ? event.currentTarget : document.querySelector('.filter-card');
+            if (card) {
+                card.classList.add('ring-4', 'ring-offset-2', 'ring-blue-500');
             }
             
             // Get current form data and filter schemes
@@ -366,15 +439,20 @@
             const data = Object.fromEntries(formData);
             
             if (data.msmeClassification && data.majorActivity && data.organizationType) {
-                let matchingSchemes = filterMatchingSchemes(data);
-                
-                if (category !== 'all') {
-                    matchingSchemes = matchingSchemes.filter(scheme => scheme.category === category);
-                }
-                
+                // The filtering logic now combines business criteria and category filter
+                const matchingSchemes = filterMatchingSchemes(data);
                 displaySchemes(matchingSchemes);
+            } else {
+                showNotification('Please submit your business information first!', 'error');
             }
         }
+
+        // Overriding the inline onclick to pass the event object correctly
+        document.querySelectorAll('.filter-card').forEach(card => {
+            const category = card.getAttribute('onclick').match(/'([^']+)'/)[1];
+            card.removeAttribute('onclick');
+            card.addEventListener('click', (e) => filterSchemes(category, e));
+        });
 
         function getCategoryColor(category) {
             const colors = {
@@ -395,36 +473,66 @@
         }
 
         function getSchemeDetails(scheme) {
+            // Function to generate a formatted detail div
+            const detailDiv = (label, value) => <div class="bg-gray-50 p-3 rounded-md"><strong>${label}:</strong> ${value}</div>;
+            
             let details = [];
             
-            if (scheme.subsidy) details.push(<div><strong>Subsidy:</strong> ${scheme.subsidy}</div>);
-            if (scheme.maxLoan) details.push(<div><strong>Max Loan:</strong> ${scheme.maxLoan}</div>);
-            if (scheme.guarantee) details.push(<div><strong>Guarantee:</strong> ${scheme.guarantee}</div>);
-            if (scheme.maxCredit) details.push(<div><strong>Max Credit:</strong> ${scheme.maxCredit}</div>);
-            if (scheme.assistance) details.push(<div><strong>Assistance:</strong> ${scheme.assistance}</div>);
-            if (scheme.coverage) details.push(<div><strong>Coverage:</strong> ${scheme.coverage}</div>);
-            if (scheme.focus) details.push(<div><strong>Focus:</strong> ${scheme.focus}</div>);
-            if (scheme.duration) details.push(<div><strong>Duration:</strong> ${scheme.duration}</div>);
-            if (scheme.activities_covered) details.push(<div><strong>Activities:</strong> ${scheme.activities_covered}</div>);
+            if (scheme.subsidy) details.push(detailDiv('Subsidy', scheme.subsidy));
+            if (scheme.maxLoan) details.push(detailDiv('Max Loan', scheme.maxLoan));
+            if (scheme.guarantee) details.push(detailDiv('Guarantee', scheme.guarantee));
+            if (scheme.maxCredit) details.push(detailDiv('Max Credit', scheme.maxCredit));
+            if (scheme.assistance) details.push(detailDiv('Assistance', scheme.assistance));
+            if (scheme.coverage) details.push(detailDiv('Coverage', scheme.coverage));
+            if (scheme.focus) details.push(detailDiv('Focus Area', scheme.focus));
+            if (scheme.duration) details.push(detailDiv('Duration', scheme.duration));
+            if (scheme.maxSubsidy) details.push(detailDiv('Max Subsidy', scheme.maxSubsidy));
+            if (scheme.reservation) details.push(detailDiv('Reservation', scheme.reservation));
+            if (scheme.subTarget) details.push(detailDiv('Sub-Targets', scheme.subTarget));
+            if (scheme.benefit) details.push(detailDiv('Main Benefit', scheme.benefit));
             
             return details.join('');
         }
 
         function capitalizeFirst(str) {
-            return str.charAt(0).toUpperCase() + str.slice(1);
+            if (!str) return 'N/A';
+            // Handle multiple words separated by spaces or hyphens
+            return str.split(/[- ]/).map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
+        }
+
+        function getOrgDisplayName(key) {
+             const names = {
+                proprietary: "Proprietary Firm",
+                partnership: "Partnership Firm",
+                huf: "HUF (Hindu Undivided Family)",
+                company: "Company",
+                llp: "LLP",
+                cooperative: "Cooperative Society",
+                society: "Society",
+                trust: "Trust",
+            };
+            return names[key] || capitalizeFirst(key);
         }
 
         function showNotification(message, type) {
             const notification = document.createElement('div');
-            notification.className = fixed top-4 right-4 p-4 rounded-lg text-white z-50 ${type === 'error' ? 'bg-red-500' : 'bg-green-500'};
+            notification.className = fixed top-4 right-4 p-4 rounded-lg text-white z-50 transition-all duration-500 ease-in-out transform shadow-xl ${type === 'error' ? 'bg-red-600' : 'bg-green-600'};
             notification.textContent = message;
             
             document.body.appendChild(notification);
             
+            // Simple animation
+            setTimeout(() => {
+                notification.style.opacity = 0;
+                notification.style.transform = 'translateY(-20px)';
+            }, 2500);
+
             setTimeout(() => {
                 notification.remove();
             }, 3000);
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99591f5e9382a6dc',t:'MTc2MTY0MDc2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
