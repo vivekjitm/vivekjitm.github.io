@@ -474,7 +474,7 @@
 
         function getSchemeDetails(scheme) {
             // Function to generate a formatted detail div
-            const detailDiv = (label, value) => <div class="bg-gray-50 p-3 rounded-md"><strong>${label}:</strong> ${value}</div>;
+            const detailDiv = (label, value) => `<div class="bg-gray-50 p-3 rounded-md"><strong>${label}:</strong> ${value}</div>`;
             
             let details = [];
             
@@ -518,7 +518,7 @@
 
         function showNotification(message, type) {
             const notification = document.createElement('div');
-            notification.className = fixed top-4 right-4 p-4 rounded-lg text-white z-50 transition-all duration-500 ease-in-out transform shadow-xl ${type === 'error' ? 'bg-red-600' : 'bg-green-600'};
+            notification.className = `fixed top-4 right-4 p-4 rounded-lg text-white z-50 transition-all duration-500 ease-in-out transform shadow-xl ${type === 'error' ? 'bg-red-600' : 'bg-green-600'}`;
             notification.textContent = message;
             
             document.body.appendChild(notification);
